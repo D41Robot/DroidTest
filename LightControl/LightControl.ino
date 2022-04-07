@@ -4,9 +4,9 @@
  * 
  */
 
-int channels[] = {0,1,2,3,4};
-int prevState[4];
-int currentState[] = {0,0,0,0,0};
+int channels[] = {0,1,2,3,4}; //The Digital Pins in use
+//int prevState[4];
+//int currentState[] = {0,0,0,0,0};
 
 void setup(){
   pinMode(0, OUTPUT);
@@ -23,21 +23,25 @@ void setup(){
 void loop() {
   if (Serial.available())
   {
-    String currentState = Serial.readString();
-    Serial.println(currentState);
+    String currentIn = Serial.readString();
+    Serial.println(currentIn);
+    //Only go through the characters of interest.
     for (int i=0; i < sizeof(channels) -1 ; i++){
-      if(currentState[i] == '0'){
+      //If the selected channel control is 0 turn off
+      if(currentIn[i] == '0'){
         digitalWrite(channels[i], LOW);
-        prevState[i] = currentState[i];
+        //prevState[i] = currentIn[i];
         Serial.println("Turned off line: " + String(channels[i]));
       }
-      else if(currentState[i] == '1'){
+      //If the selected channel control is 1 turn on
+      else if(currentIn[i] == '1'){
         digitalWrite(channels[i], HIGH);
-        prevState[i] = currentState[i];
+        //prevState[i] = currentIn[i];
         Serial.println("Turned on line: " + String(channels[i]));
       }
+      //something else was found in the message
       else{
-        Serial.println("Transmission had an error! currentState: " + String(currentState[i]) + " PrevState: " + String(prevState[i]));
+        Serial.println("Transmission had an error!");
       }
       
     }
