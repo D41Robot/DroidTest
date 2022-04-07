@@ -1,3 +1,9 @@
+/*
+ * The Arduino will read in a string from Serial and then
+ * update the approperiate digital out state.
+ * 
+ */
+
 int channels[] = {0,1,2,3,4};
 int prevState[4];
 int currentState[] = {0,0,0,0,0};
