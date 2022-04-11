@@ -10,13 +10,7 @@ int channels[] = {13,12,11,10,9}; //The Digital Pins in use
 
 
 void setup(){
-/*
-  for(int i = 0; i < sizeof(channels)-1; i++){
-    pinMode(channels[i], OUTPUT);
-  }
-*/
   Serial.begin(9600);
-
   Serial.println("Welcome to the interface");
 }
 
